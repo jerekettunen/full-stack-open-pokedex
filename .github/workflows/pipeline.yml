@@ -66,14 +66,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Notify success
-        uses: rjstone/discord-webhook-notify@v1
+        uses: rjstone/discord-webhook-notify@v1.0.2
         if: ${{success()}}
         with:
           severity: info
           details: 'Succeeded and deployed to production!'
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Failure
-        uses: rjstone/discord-webhook-notify@v1
+        uses: rjstone/discord-webhook-notify@v1.0.2
         if: ${{failure()}}
         with:
           severity: error
