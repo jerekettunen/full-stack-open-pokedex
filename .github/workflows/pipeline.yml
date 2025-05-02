@@ -47,9 +47,15 @@ jobs:
       - name: Testing
         run: git config --global --add safe.directory /github/workspace
 
+  tag_release:
+    needs: [simple_deployment_pipeline]
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
+    steps:
+      - uses: actions/checkout@v4
+
       - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.7.1
+        uses: anothrNick/github-tag-action@1.64.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BUMP: 'patch'
-          VERBOSE: 'true'
+          DEFAULT_BUMP: patch
