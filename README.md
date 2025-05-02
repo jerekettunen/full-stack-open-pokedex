@@ -13,3 +13,27 @@ Start by running `npm install` inside the project folder
 `npm run eslint` to run eslint
 `npm run build` to make a production build
 `npm run start-prod` to run your production build
+
+## Current tasks
+
+- [x] 1
+- [x] 2
+- [x] 3
+- [x] 4
+- [x] 5
+- [x] 6
+- [x] 7
+- [x] 8
+- [x] 9
+- [x] 10
+- [x] 11
+- [x] 12
+- [x] 13
+- [x] 14
+- [ ] 15
+- [ ] 16
+- [ ] 17
+- [ ] 18
+- [ ] 19
+- [ ] 20
+- [ ] 21
