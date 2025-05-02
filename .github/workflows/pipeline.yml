@@ -57,6 +57,8 @@ jobs:
           embed-url: 'https://full-stack-open-pokedex-9cxh.onrender.com'
           embed-title: 'Deployment Success'
           embed-author-name: ${{ github.event.head_commit.author.name }}
+          embed-color: '65280'
+          embed-description: 'Success ✅}'
       - name: Test Failure
         uses: tsickert/discord-webhook@v7.0.0
         if: ${{failure()}}
