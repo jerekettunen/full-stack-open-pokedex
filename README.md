@@ -30,7 +30,7 @@ Start by running `npm install` inside the project folder
 - [x] 12
 - [x] 13
 - [x] 14
-- [ ] 15
+- [x] 15 tricky stuff!
 - [ ] 16
 - [ ] 17
 - [ ] 18
