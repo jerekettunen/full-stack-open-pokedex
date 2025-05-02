@@ -1,0 +1,25 @@
+name: Perodic Health Check
+on:
+  schedule:
+    - cron: '*/5 * * * *' # Every five minutes
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the deployed service URL
+        uses: jtalk/url-health-check-action@v4
+        with:
+          url: https://full-stack-open-pokedex-9cxh.onrender.com/health
+          max-attempts: 3 # Optional, defaults to 1
+          retry-delay: 5s # Optional, only applicable to max-attempts > 1
+      - name: Test Failure
+        uses: tsickert/discord-webhook@v7.0.0
+        if: ${{failure()}}
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          content: 'This whole thing failed us'
+          embed-title: 'Something is wrong with the site'
+          embed-author-name: ${{ github.event.head_commit.author.name }}
+          embed-color: '16711680'
+          embed-description: 'failed here: ${{ github.event.head_commit.url }}'

@@ -31,9 +31,9 @@ Start by running `npm install` inside the project folder
 - [x] 13
 - [x] 14
 - [x] 15
-- [ ] 16
-- [ ] 17
-- [ ] 18
+- [x] 16
+- [x] 17
+- [x] 18
 - [ ] 19
 - [ ] 20
 - [ ] 21
