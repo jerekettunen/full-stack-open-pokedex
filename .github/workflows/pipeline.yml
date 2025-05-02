@@ -52,13 +52,13 @@ jobs:
         uses: tsickert/discord-webhook@v7.0.0
         if: ${{success() && github.event_name == 'push' && env.CONDITION == 'false'}}
         with:
-          webhook-url: ${{ secrets.WEBHOOK_URL }}
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
           content: 'Successfully deployed to Render }}'
       - name: Test Failure
         uses: tsickert/discord-webhook@v7.0.0
         if: ${{failure() && steps.deploy.conclusion == 'failure'}}
         with:
-          webhook-url: ${{ secrets.WEBHOOK_URL }}
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
           content: 'This whole thing failed us: ${{ github.event.head_commit.url }}'
 
   tag_release:
