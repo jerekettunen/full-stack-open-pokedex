@@ -44,23 +44,22 @@ jobs:
           retention-days: 30
 
       - name: Trigger deployment
+        id: deploy
         if: ${{ github.event_name == 'push' && env.CONDITION == 'false' }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
 
       - name: Notify success
-        uses: rjstone/discord-webhook-notify@v1
-        if: ${{success()}}
+        uses: tsickert/discord-webhook@v7.0.0
+        if: ${{success() && github.event_name == 'push' && env.CONDITION == 'false'}}
         with:
-          severity: info
-          details: Succeeded and deployed to production!
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook-url: ${{ secrets.WEBHOOK_URL }}
+          content: 'Successfully deployed to Render }}'
       - name: Test Failure
-        uses: rjstone/discord-webhook-notify@v1
-        if: ${{failure()}}
+        uses: tsickert/discord-webhook@v7.0.0
+        if: ${{failure() && steps.deploy.conclusion == 'failure'}}
         with:
-          severity: error
-          details: Build Failed!
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook-url: ${{ secrets.WEBHOOK_URL }}
+          content: 'This whole thing failed us: ${{ github.event.head_commit.url }}'
 
   tag_release:
     needs: [simple_deployment_pipeline]
