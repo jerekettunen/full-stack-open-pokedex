@@ -46,7 +46,7 @@ jobs:
       - name: Trigger deployment
         id: deploy
         if: ${{ github.event_name == 'push' && env.CONDITION == 'false' }}
-        run: curl https://api.render.com/deploy/sr-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
+        run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
 
       - name: Notify success
         uses: tsickert/discord-webhook@v7.0.0
@@ -59,7 +59,7 @@ jobs:
           embed-author-name: ${{ github.event.head_commit.author.name }}
       - name: Test Failure
         uses: tsickert/discord-webhook@v7.0.0
-        if: ${{failure() && steps.deploy.conclusion == 'failure'}}
+        if: ${{failure()}}
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
           content: 'This whole thing failed us'
