@@ -17,7 +17,11 @@ const useApi = (url, mapResults = (result) => result) => {
   return { data, isLoading, error }
 }
 
+const dummy = () => {
+  console.log('dummy')
+}
+void dummy()
+
 export { useApi }
 
-// Inappropriate comment so update file
-// More comments
+
